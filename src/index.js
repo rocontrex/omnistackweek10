@@ -1,15 +1,19 @@
-const express = require('express');
-const mongoose = require('mongoose')
-const routes = require('./routes')
-const app = express();
+const 
+express = require('express'),
+mongoose = require('mongoose'),
+routes = require('./routes'),
+dotenv = require('dotenv'),
+app = express();
 
-mongoose.connect('mongodb+srv://rodrigo:admin123@cluster0-atihd.mongodb.net/week10?retryWrites=true&w=majority', {
+dotenv.config();
+
+mongoose.connect(process.env.CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
 
-app.use(express.json)
-app.use(routes)
+app.use(express.json());
+app.use(routes);
 //Metodos HTTP: GET, PUT, POST, DELETE
 //Tipos de parametros
 //Query Params: request.query(Filtros, ordenação, paginação...)
