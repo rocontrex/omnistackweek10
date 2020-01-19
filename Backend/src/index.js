@@ -3,6 +3,7 @@ express = require('express'),
 mongoose = require('mongoose'),
 routes = require('./routes'),
 dotenv = require('dotenv'),
+cors = require('cors'),
 app = express();
 
 dotenv.config();
@@ -11,7 +12,7 @@ mongoose.connect(process.env.CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
-
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 //Metodos HTTP: GET, PUT, POST, DELETE
